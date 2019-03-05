@@ -89,6 +89,7 @@
     <Compile Include="Controllers\IndicadorController.cs" />
     <Compile Include="Controllers\PersonController.cs" />
     <Compile Include="Controllers\Relacion_tag_informeController.cs" />
+    <Compile Include="Controllers\Roles_TareasController.cs" />
     <Compile Include="Controllers\TagController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -96,8 +97,10 @@
     <Compile Include="Models\Indicador.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\Relacion_tag_informe.cs" />
+    <Compile Include="Models\Roles_Tareas.cs" />
     <Compile Include="Models\Tag.cs" />
     <Compile Include="Persistencia\PersistenciaIndicador.cs" />
+    <Compile Include="Persistencia\PersistenciaRol_Tarea.cs" />
     <Compile Include="Persistencia\PersistenciaUser.cs" />
     <Compile Include="Persistencia\PersistenciaTagReport.cs" />
     <Compile Include="Persistencia\PersistenciaTag.cs" />

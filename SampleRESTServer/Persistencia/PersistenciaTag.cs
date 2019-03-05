@@ -10,74 +10,112 @@ namespace SampleRESTServer.Persistencia
     public class PersistenciaTag
     {
 
-        public void ingresarTagAsociarREporte(Tag mitag)
+        public void ingresarTagAsociarREporte(Tag mitag,string url_Report)
         {
 
             string tag1 = mitag.tipoTag;
             string descripciontag1 = mitag.DescripcionTag;
 
             int idmax = 0;
+            int retornoIDExiste = 0;
             SqlDataAdapter adapter = new SqlDataAdapter();
-            try
+         
+
+            PersistenciaTagReport ReportTag = new PersistenciaTagReport();
+           retornoIDExiste= ReportTag.verificaExisteReporte(url_Report);
+
+            if (retornoIDExiste !=0)
             {
-                SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
+                int IdTag = 0;
+                PersistenciaTagReport tag = new PersistenciaTagReport();
+               IdTag= tag.RetornoIDTagSiExiste(mitag);
 
-                builder.DataSource = "azuevbsqc01q.database.windows.net";
-                builder.UserID = "_Soportedb";
-                builder.Password = "V3nT@$%s3v1Ci0$2@@19*.";
-                builder.InitialCatalog = "Portal_Digital";
 
-                using (SqlConnection connection = new SqlConnection(builder.ConnectionString))
+                if (IdTag != 0)
                 {
-                    connection.Open();
-                    //  SqlTransaction tr = connection.BeginTransaction(System.Data.IsolationLevel.RepeatableRead);
-
-
-                    StringBuilder sb = new StringBuilder();
-                    sb.Append("insert into Portal_Digital.Administrator.Tag (Tipo_Tag,Descripcion)");
-                    sb.Append(" VALUES" + " ('" + tag1 + "', '" + descripciontag1 + "');");
-
-
-
-                    String sql = sb.ToString();
-
-                    try
+                    if (  (tag.tablaRelacional(IdTag, retornoIDExiste) == 0))
                     {
 
-                        using (SqlCommand cmd = new SqlCommand(sql, connection))
+
+
+                        try
                         {
-                            if (VerificaExistag(mitag) != false)
+                            SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
+
+                            builder.DataSource = "azuevbsqc01q.database.windows.net";
+                            builder.UserID = "_Soportedb";
+                            builder.Password = "V3nT@$%s3v1Ci0$2@@19*.";
+                            builder.InitialCatalog = "Portal_Digital";
+
+                            using (SqlConnection connection = new SqlConnection(builder.ConnectionString))
                             {
-                                cmd.ExecuteNonQuery();
+                                connection.Open();
+                                //  SqlTransaction tr = connection.BeginTransaction(System.Data.IsolationLevel.RepeatableRead);
+
+
+                                StringBuilder sb = new StringBuilder();
+                                sb.Append("insert into Portal_Digital.Administrator.Tag (Tipo_Tag,Descripcion)");
+                                sb.Append(" VALUES" + " ('" + tag1 + "', '" + descripciontag1 + "');");
+
+
+
+                                String sql = sb.ToString();
+
+                                try
+                                {
+
+                                    using (SqlCommand cmd = new SqlCommand(sql, connection))
+                                    {
+                                        if (VerificaExistag(mitag) != false)
+                                        {
+                                            cmd.ExecuteNonQuery();
+                                        }
+
+
+
+
+                                    }
+
+                                }
+                                catch (Exception ex)
+                                {
+                                    ex.ToString();
+
+                                }
+
+
+                                connection.Close();
+
+
                             }
-
-
-
-
+                        }
+                        catch (SqlException e)
+                        {
+                            e.ToString();
                         }
 
-                    }
-                    catch (Exception ex)
-                    {
-                        ex.ToString();
+
+
 
                     }
 
 
-                    connection.Close();
 
 
                 }
-            }
-            catch (SqlException e)
-            {
-                e.ToString();
-            }
+
+                }
+
+                
 
 
 
 
         }
+
+
+
+            
 
 
 

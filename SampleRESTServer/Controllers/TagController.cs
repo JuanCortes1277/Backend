@@ -24,11 +24,12 @@ namespace SampleRESTServer.Controllers
            Tagretornado= miTag.retornoTag(nombre);
             return Tagretornado;
         }
-        [HttpGet]
+        [HttpPost]
         [ActionName("GuardarTag")]
-        public void GuardarTag(Tag mitag)
+        public void GuardarTag(Tag mitag,string url_reporte)
         {
             PersistenciaTag PT = new PersistenciaTag();
+            PT.ingresarTagAsociarREporte(mitag,url_reporte);
            // PT.ingresarTag(mitag);
         }
         /*  public Tag retornotag()

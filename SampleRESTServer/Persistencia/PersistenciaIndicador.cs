@@ -58,8 +58,8 @@ namespace SampleRESTServer.Persistencia
                     StringBuilder sb = new StringBuilder();
                     sb.Append("insert into Portal_Digital.Administrator.Indicador_Portal_Digital (Nombre,Unidad_Medida,peso,Frecuencia,Limite_Inferior" +
                         "LI,Meta,L_S,Limite_Superior");
-                    sb.Append(" VALUES" + " ('" + Nombre + "', '" + Unidad_Medida + "', '"+peso+"', ");");
-
+                    sb.Append(" VALUES" + " ('" + Nombre + "', '" + Unidad_Medida + "', '" + peso + "', '" + frecuencia +
+                         "', '" + Limite_Inferior + "', '" + "', '" + Li + "', '" + "', '" + Meta + "', '" + ls + "', '" + Limite_superior + "');");
 
 
                     String sql = sb.ToString();

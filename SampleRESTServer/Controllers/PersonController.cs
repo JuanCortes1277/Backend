@@ -37,7 +37,10 @@ namespace SampleRESTServer.Controllers
 
             return null;
         }
-        public Person Get(string value)
+
+        [HttpGet]
+        [ActionName("GetPersona")]
+        public Person GetPersona(string value)
         {
             PersistenciaUser PU = new PersistenciaUser();
             Person mipersona = new Person();
@@ -48,16 +51,18 @@ namespace SampleRESTServer.Controllers
         // POST: api/Person
         [HttpPost]
         [ActionName("AddPersona")]
-        public HttpResponseMessage Post([FromBody]Person value)
+        public void Addpersona([FromBody]Person value)
         {
             PersistenciaUser persona = new PersistenciaUser();
             Boolean id;
-            id = persona.GuardarPersona(value);
+            persona.GuardarPersona(value);
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created);
-            response.Headers.Location = new Uri(Request.RequestUri, String.Format("Person/{0}", id));
-            return response;
+           // response.Headers.Location = new Uri(Request.RequestUri, String.Format("Person/{0}", id));
+            //return response;
 
         }
+        [HttpPost]
+        [ActionName("")]
 
         // PUT: api/Person/5
         public void Put(int id, [FromBody]Person value)
