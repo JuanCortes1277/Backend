@@ -156,6 +156,7 @@ namespace SampleRESTServer.Persistencia
                     {
                         InsertAdministratorRoles_Tareas(user, tareas.ElementAt(i));
 
+
                     }
                     return true;
 
