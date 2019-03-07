@@ -13,7 +13,7 @@ namespace SampleRESTServer.Persistencia
 
         public void isertarRol_Tarea(Roles_Tareas mitarea)
         {
-          //  if (verificaexistenciatarea(mitarea.Tarea) == false)
+          // if (verificaexistenciatarea(mitarea.) == false)
             {
 
                 SqlDataAdapter adapter = new SqlDataAdapter();
@@ -36,7 +36,7 @@ namespace SampleRESTServer.Persistencia
 
                         StringBuilder sb = new StringBuilder();
                         sb.Append("insert into Portal_Digital.Administrator.Roles_Tareas(,Administrator_Rol,Visualizator_Rol,Tecnico_Rol)");
-                        sb.Append(" VALUES" + " (" +"'"+"'"+ ", " + adminR + ", " + visR + ", " + TecnicoR + ");");
+                        sb.Append(" VALUES" + " (" + ", " + adminR + ", " + visR + ", " + TecnicoR + ");");
 
 
                         String sql = sb.ToString();

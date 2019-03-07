@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
+
 using System.Text;
 using System.Web.Http;
 using SampleRESTServer.Persistencia; 
 using SampleRESTServer.Models;
+using System.Net.Http;
+
 //importante rest get request: http://localhost:65510/api/Relacion_tag_informe?relacion=Aguas
 
 namespace SampleRESTServer.Controllers
@@ -63,16 +65,16 @@ namespace SampleRESTServer.Controllers
         // POST: api/Relacion_tag_informe?value.id=
         [HttpPost]
         [ActionName("IngresarInforme")]
-        public HttpResponseMessage Post([FromBody]Relacion_tag_informe value)
+        public void Post([FromBody]Relacion_tag_informe value)
         {
       
         
             PersistenciaTagReport tag = new PersistenciaTagReport();
             Boolean id;
             id = tag.GuardarReporte(value);
-            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created);
-            response.Headers.Location = new Uri(Request.RequestUri, String.Format("Relacion_tag_informe/{0}",id));
-            return response;
+          //  HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created);
+           // response.Headers.Location = new Uri(Request.RequestUri, String.Format("Relacion_tag_informe/{0}",id));
+           // return response;
         }
 
       /*  public HttpResponseMessage Post([FromBody]string url, string tag, string relacion, string nombre)

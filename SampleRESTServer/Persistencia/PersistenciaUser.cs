@@ -44,7 +44,7 @@ namespace SampleRESTServer.Persistencia
                     {
                         mipersona.id = dr.GetInt32(0);
                                 mipersona.Nombre = dr.GetString(1);
-                                mipersona.Rol = dr.GetString(2);
+                         
                                 mipersona.Username = dr.GetString(3);
                                 mipersona.Contrasena = dr.GetString(4);
                                 mipersona.Area = dr.GetString(5);
@@ -348,6 +348,68 @@ namespace SampleRESTServer.Persistencia
 
         }
 
+        public void BorrarPersonRol(int IDUSER)
+        {
+
+            SqlDataAdapter adapter = new SqlDataAdapter();
+            try
+            {
+                SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
+
+                builder.DataSource = "azuevbsqc01q.database.windows.net";
+                builder.UserID = "_Soportedb";
+                builder.Password = "V3nT@$%s3v1Ci0$2@@19*.";
+                builder.InitialCatalog = "Portal_Digital";
+
+
+
+                using (SqlConnection connection = new SqlConnection(builder.ConnectionString))
+                {
+                    connection.Open();
+                    // SqlTransaction tr = connection.BeginTransaction(System.Data.IsolationLevel.RepeatableRead);
+
+
+                    StringBuilder sb = new StringBuilder();
+                    sb.Append("delete from Administrator.Rol_Usuario");
+                    sb.Append(" where FKUSUARIO_ID= " + IDUSER + ";");
+
+
+                    String sql = sb.ToString();
+                    string sql1 = sql;
+
+                    try
+                    {
+
+                        adapter.InsertCommand = new SqlCommand(sql, connection);
+                        adapter.InsertCommand.ExecuteNonQuery();
+
+                    }
+                    catch (Exception ex)
+                    {
+                        ex.ToString();
+
+                    }
+
+                    // tr.Commit();
+                    connection.Close();
+
+
+                }
+            }
+            catch (SqlException e)
+            {
+                e.ToString();
+            }
+
+
+        }
+        public void llenarPersonaROl(int IDPERSONA, IDROL)
+        {
+
+
+
+        }
+
         public void GuardarPersona(Person mipersona)
         {/*
              sb.Append("insert into  Portal_Digital.Administrator.Usuario_Portal (Nombre,Rol,Username,Contrasena,Area,Email)");
@@ -355,10 +417,12 @@ namespace SampleRESTServer.Persistencia
              
              */
             string Nombre=  mipersona.Nombre ;
-          string rol=  mipersona.Rol  ;
+     
           string Username=  mipersona.Username ;
           string Contrasena= mipersona.Contrasena ;
           string Area = mipersona.Area  ;
+            List<int> roles = new List<int>();
+            roles = mipersona.roles;
           string Email=mipersona.Email ;
             int idmax = 0;
 
@@ -381,8 +445,8 @@ namespace SampleRESTServer.Persistencia
                     {
                         StringBuilder sb = new StringBuilder();
                         // SqlTransaction tr = connection.BeginTransaction(System.Data.IsolationLevel.RepeatableRead);
-                        sb.Append("insert into  Portal_Digital.Administrator.Usuario_Portal (Nombre,Rol,Username,Contrasena,Area,Email)");
-                        sb.Append(" VALUES" + " ('" + Nombre + "', '" + rol + "', '" + Username + "','" + Contrasena + "', '" + Area + "', '" + Email + "');SELECT CAST(scope_identity() AS int);");
+                        sb.Append("insert into  Portal_Digital.Administrator.Usuario_Portal (Nombre,Username,Contrasena,Area,Email)");
+                        sb.Append(" VALUES" + " ('" + Nombre + "'', '" + Username + "','" + Contrasena + "', '" + Area + "', '" + Email + "');SELECT CAST(scope_identity() AS int);");
 
 
                    

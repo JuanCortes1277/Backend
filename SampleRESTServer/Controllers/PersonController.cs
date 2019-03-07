@@ -56,7 +56,7 @@ namespace SampleRESTServer.Controllers
             PersistenciaUser persona = new PersistenciaUser();
             Boolean id;
             persona.GuardarPersona(value);
-            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created);
+          //  HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created);
            // response.Headers.Location = new Uri(Request.RequestUri, String.Format("Person/{0}", id));
             //return response;
 

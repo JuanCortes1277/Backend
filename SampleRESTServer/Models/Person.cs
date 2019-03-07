@@ -11,9 +11,10 @@ namespace SampleRESTServer.Models
         public String Nombre { get; set; }
         public String Username { get; set; }
         public String Contrasena { get; set; }
-        public String Rol { get; set; }
+      
         public int id { get; set; }
         public String Area { get; set; }
         public String Email { get; set; }
+        public List<int> roles= new List<int>();
     }
 }

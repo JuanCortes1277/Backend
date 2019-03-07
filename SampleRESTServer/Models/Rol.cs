@@ -9,10 +9,10 @@ namespace SampleRESTServer.Models
     public class Rol
     {
         public int id { get; set; }
-        public string  NombreROl{get;set;}
+        public string NombreROl { get; set; }
         public string DescripcionRol { get; set; }
         public List<int> tareas = new List<int>();
-    
+
 
     }
 }

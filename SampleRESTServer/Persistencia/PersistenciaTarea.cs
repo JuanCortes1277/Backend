@@ -11,18 +11,18 @@ namespace SampleRESTServer.Persistencia
     {
 
 
-              
-        
-            public int guardarTarea(string NombreTarea, string DescripcionTarea)
-            {
+
+
+        public int guardarTarea(string NombreTarea, string DescripcionTarea)
+        {
 
 
 
-                int idmax = 0;
-                SqlDataAdapter adapter = new SqlDataAdapter();
+            int idmax = 0;
+            SqlDataAdapter adapter = new SqlDataAdapter();
             int existe = 0;
             existe = RetornoTarea(NombreTarea);
-            if(existe == 0)
+            if (existe == 0)
             {
                 try
                 {
@@ -86,9 +86,9 @@ namespace SampleRESTServer.Persistencia
             {
                 return existe;
             }
-               
-               
-            }
+
+
+        }
 
         public int RetornoTarea(string tarea)
         {
@@ -102,7 +102,7 @@ namespace SampleRESTServer.Persistencia
             builder.InitialCatalog = "Portal_Digital";
 
             int PatientCount = 0;
-            String strCommand = "SELECT ID_TAREA  from Portal_Digital.Administrator.Tarea where TAREA_NOMBRE= " + "'" +tarea + "'; ";
+            String strCommand = "SELECT ID_TAREA  from Portal_Digital.Administrator.Tarea where TAREA_NOMBRE= " + "'" + tarea + "'; ";
 
             using (SqlConnection sqlConnection = new SqlConnection(builder.ConnectionString))
             {
